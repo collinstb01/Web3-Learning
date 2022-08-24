@@ -31,8 +31,8 @@ const verify = async (contractAddress, args) => {
       address: contractAddress,
       constructorArguments: args,
     })
-  } catch (e) {
-    if (e.message.toLowerCase().includes("already verified")) {
+  } catch (error) {
+    if (error.message.toLowerCase().includes("already verified")) {
       console.log("Already Verified!")
     } else {
       console.log(e)
