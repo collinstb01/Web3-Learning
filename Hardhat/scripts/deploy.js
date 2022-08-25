@@ -1,4 +1,4 @@
-const { run, network } = require("hardhat")
+const { run, network, ethers } = require("hardhat")
 require("dotenv")
 
 async function main() {
@@ -31,8 +31,8 @@ const verify = async (contractAddress, args) => {
       address: contractAddress,
       constructorArguments: args,
     })
-  } catch (error) {
-    if (error.message.toLowerCase().includes("already verified")) {
+  } catch (e) {
+    if (e.message.toLowerCase().includes("already verified")) {
       console.log("Already Verified!")
     } else {
       console.log(e)

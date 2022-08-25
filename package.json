@@ -8,5 +8,9 @@
   },
   "scripts": {
     "compile": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
+  },
+  "devDependencies": {
+    "hardhat": "^2.10.2",
+    "hardhat-deploy": "^0.11.12"
   }
 }
