@@ -51,7 +51,7 @@ contract FundMe {
   /// @notice Funds our contract based on the ETH/USD price
   function fund() public payable {
     require(
-      msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD,
+      PriceConverter.getConversionRate(msg.value, s_priceFeed) >= MINIMUM_USD,
       "You need to spend more ETH!"
     );
     // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
