@@ -1,11 +1,14 @@
-const { version } = require("chai")
-
-require("@nomicfoundation/hardhat-toolbox")
-// require("dotenv")
-require("@nomiclabs/hardhat-etherscan")
-// require("./tasks/bock-number.js")
+// require("@nomiclabs/hardhat-waffle")
 require("hardhat-gas-reporter")
+require("@nomiclabs/hardhat-etherscan")
+require("dotenv").config()
 require("solidity-coverage")
+require("hardhat-deploy")
+// You need to export an object to set up your config
+// Go to https://hardhat.org/config/ to learn more
+/**
+ * @type import('hardhat/config').HardhatUserConfig
+ */
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {

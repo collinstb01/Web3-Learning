@@ -1,12 +1,11 @@
 const { getNamedAccounts, deployments, network } = require("hardhat")
 const { networkConfig, developmentChains } = require("../helper-hardhat-config")
-const { verify } = require("../utils/verify")
+const { verify } = require("../utils/verify.js")
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy, log } = deployments
   const { deployer } = await getNamedAccounts()
   const chainId = network.config.chainId
-
   let ethUsdPriceFeedAddress
   if (chainId == 31337) {
     const ethUsdAggregator = await deployments.get("MockV3Aggregator")
@@ -24,6 +23,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     waitConfirmations: network.config.blockConfirmations || 1,
   })
   log(`FundMe deployed at ${fundMe.address}`)
+  log(chainId, ethUsdPriceFeedAddress)
 
   if (
     !developmentChains.includes(network.name) &&
