@@ -1,5 +1,11 @@
 const { assert, expect } = require("chai")
-const { network, deployments, ethers } = require("hardhat")
+const {
+  network,
+  deployments,
+  ethers,
+  getUnnamedAccounts,
+  getNamedAccounts,
+} = require("hardhat")
 const { developmentChains } = require("../../helper-hardhat-config")
 
 !developmentChains.includes(network.name)
@@ -9,8 +15,8 @@ const { developmentChains } = require("../../helper-hardhat-config")
       let mockV3Aggregator
       let deployer
       const sendValue = ethers.utils.parseEther("1")
-      beforeEach(async () => {
-        // const accounts = await ethers.getSigners()
+      beforeEach(async ({ getNamedAccounts }) => {
+        // const accounts = await ethers.getSigners() // to get private key frm accounts
         // deployer = accounts[0]
         deployer = (await getNamedAccounts()).deployer
         await deployments.fixture(["all"])
@@ -28,7 +34,6 @@ const { developmentChains } = require("../../helper-hardhat-config")
         })
       })
 
-      describe("")
       describe("fund", function () {
         // https://ethereum-waffle.readthedocs.io/en/latest/matchers.html
         // could also do assert.fail
@@ -60,7 +65,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
             fundMe.address
           )
           const startingDeployerBalance = await fundMe.provider.getBalance(
-            deployer
+            deployer  
           )
 
           // Act
